@@ -5,19 +5,27 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../store/authSlice";
 import { backendUrl } from "../utils/constants";
 import validator from 'validator';
+import Header from "./Header";
+import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [error, setError] = useState("");
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const onSubmit = async (data) => {
         const {email, password} = data;
-        await axios.post(`${backendUrl}auth/login`, {email, password}, {withCredentials: true})
-        .then(res => dispatch(addUser(res.data.data)))
+        await axios.post(`${backendUrl}/auth/login`, {email, password}, {withCredentials: true})
+        .then(res => {
+            dispatch(addUser(res.data.data))
+            return navigate('/profile')
+        })
         .catch(err => setError(err?.response?.data?.message))
     };
     return (
+        <>
         <div className="flex justify-center mt-[5%]">
             <div className="card card-dash bg-base-300 w-96">
                 <div className="card-body">
@@ -46,9 +54,11 @@ const Login = () => {
                             <input className="btn btn-secondary w-full hover:bg-base-300 text-lg" type="submit" />
                         </div>
                     </form>
+                    <Link to="/register"><h1 className="text-pink-700 cursor-pointer font-bold">New User? Please Register!!</h1></Link>
                 </div>
             </div>
         </div>
+        </>
     );
 };
 
