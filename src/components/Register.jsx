@@ -16,7 +16,6 @@ const Register = () => {
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleRegister = async (data) => {
-        console.log(data);
         const { firstName, lastName, email, password } = data;
         try {
             const res = await axios.post(`${backendUrl}/auth/signup`, { firstName, lastName, email, password }, { withCredentials: true });

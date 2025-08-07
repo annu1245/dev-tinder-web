@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Profile from "./components/Profile";
 import Register from "./components/Register";
+import Feed from "./components/Feed";
+import EditProfile from "./components/EditProfile";
 
 function App() {
     return (
@@ -15,7 +17,8 @@ function App() {
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/" element={<PrivateRoutes />}>
                         <Route path="/login" element={<Login />} />
-                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/profile" element={<EditProfile />} />
+                        <Route path='/feed' element={<Feed/>}/>
                     </Route>
                     <Route path="*" element={<div>Not Found</div>} />
                 </Routes>
