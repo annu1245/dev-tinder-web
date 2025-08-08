@@ -7,6 +7,8 @@ import axios from "axios";
 import { backendUrl } from "../utils/constants";
 import { ToastContainer, toast } from "react-toastify";
 import { useGetUserProfile } from "../hook/useGetUserProfile";
+import CreatableSelect from "react-select/creatable";
+import { SKILLS } from "../utils/constants";
 
 function areFieldsEqual(obj1, obj2, keys) {
     return keys.every((key) => {
@@ -57,14 +59,13 @@ const EditProfile = () => {
         }
     };
 
-    
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         age: "",
         gender: "",
         photoUrl: "",
-        skills: "",
+        skills: [],
         about: "",
     });
 
@@ -76,7 +77,7 @@ const EditProfile = () => {
                 age: user.age || "",
                 gender: user.gender || "",
                 photoUrl: user.photoUrl || "",
-                skills: user.skills || "",
+                skills: (user.skills || []).map((item) => ({ label: item, value: item })),
                 about: user.about || "",
             });
         }
@@ -121,10 +122,10 @@ const EditProfile = () => {
                                 ))}
                             </select>
                         </fieldset>
-
+                     
                         <fieldset className="fieldset">
                             <legend className="fieldset-legend text-sm">Skills</legend>
-                            <input type="text" className="input w-full" placeholder="Skills" value={Array.isArray(formData.skills) ? formData.skills.join(", ") : formData.skills} onChange={(e) => setFormData({ ...formData, skills: e.target.value })} />
+                            <CreatableSelect classNamePrefix="custom-select" isMulti options={SKILLS} value={formData.skills} onChange={(selectedOptions) => setFormData({ ...formData, skills: selectedOptions })} />
                         </fieldset>
 
                         <fieldset className="fieldset">
@@ -145,7 +146,7 @@ const EditProfile = () => {
                 </div>
             </div>
             <div>
-                <UserCard user={{ ...formData }} isEdit={false} />
+                <UserCard user={{ ...formData, skills: formData.skills.map(skill => skill.value) }} isEdit={false} />
             </div>
         </div>
     );

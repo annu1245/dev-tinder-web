@@ -1,2 +1,76 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* index.css */
+/* index.css - Dark UI for react-select */
+
+div.custom-select__control {
+  background-color: #1e1e2f;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: none;
+  color: #f0f0f0;
+}
+div.custom-select__input-container {
+  color:#f0f0f0
+}
+div.custom-select__control:hover {
+  border-color: #555;
+}
+
+div.custom-select__input {
+  color: #f0f0f0;
+}
+
+div.custom-select__value-container {
+  padding: 4px 8px;
+}
+
+div.custom-select__multi-value {
+  background-color: #333344;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+}
+
+div.custom-select__multi-value__label {
+  color: #c0e4ff;
+  font-size: 14px;
+}
+
+div.custom-select__multi-value__remove {
+  color: #ff7777;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+div.custom-select__multi-value__remove:hover {
+  color: #ff4444;
+}
+
+div.custom-select__menu {
+  background-color: #2a2a3d;
+  border: 1px solid #444;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin-top: 4px;
+  z-index: 10;
+  color: #fff;
+}
+
+div.custom-select__option {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #ddd;
+}
+
+div.custom-select__option--is-focused {
+  background-color: #44445a;
+}
+
+div.custom-select__option--is-selected {
+  background-color: #555577;
+}
