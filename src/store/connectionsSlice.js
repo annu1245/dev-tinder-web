@@ -19,6 +19,10 @@ const connectionSlice = createSlice({
       const id = action.payload;
       state.requestRecevied = state.requestRecevied.filter(request => request._id != id)
     },
+    filterRquestSend: (state, action) => {
+      const id = action.payload;
+      state.requestSend = state.requestSend.filter(request => request._id != id)
+    }, 
     addConnections: (state, action) => {
       state.userConnections = action.payload
     },
@@ -31,5 +35,5 @@ const connectionSlice = createSlice({
   }
 })
 
-export const { addRequestReceived, addRequestSend, addConnections, filterRequestReceived} = connectionSlice.actions;
+export const { addRequestReceived, addRequestSend, addConnections, filterRequestReceived, filterRquestSend } = connectionSlice.actions;
 export default connectionSlice.reducer;

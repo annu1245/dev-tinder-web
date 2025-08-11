@@ -28,7 +28,7 @@ const Connections = () => {
             <>
                 <div className="my-10 gap-5 flex flex-col items-center">
                     {connections.map((connection) => (
-                        <ConnectionCard key={connection._id} request={connection.userDetails} isSentRequest={false}/>
+                        <ConnectionCard key={connection._id} request={connection.userDetails} />
                     ))}
                 </div>
             </>
